@@ -1,0 +1,48 @@
+name: Build Windows Release
+
+on:
+  push:
+    tags: [ 'v*' ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+
+    - name: Set up Go
+      uses: actions/setup-go@v5
+      with:
+        go-version: '1.21'
+
+    - name: Get dependencies
+      run: go mod tidy
+
+    - name: Build Windows
+      run: |
+        GOOS=windows GOARCH=amd64 go build -ldflags="-s -w" -o ntp-timer-windows-amd64.exe main.go
+
+    - name: Create Release
+      uses: softprops/action-gh-release@v2
+      with:
+        files: |
+          ntp-timer-windows-amd64.exe
+        generate_release_notes: true
+        name: "NTP Timer ${{ github.ref_name }}"
+        body: |
+          ## 🎉 NTP Timer ${{ github.ref_name }}
+          
+          ### 📦 下载
+          - **Windows 64位**: `ntp-timer-windows-amd64.exe`
+          
+          ### 🚀 使用方法
+          1. 下载 `ntp-timer-windows-amd64.exe`
+          2. 双击运行（如需同步系统时间请右键"以管理员身份运行"）
+          3. 浏览器自动打开 http://localhost:8080
+
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

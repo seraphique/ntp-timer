@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NTP时间同步</title>
+    <link rel="stylesheet" href="static/style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>NTP时间同步</h1>
+        
+        <div class="server-config">
+            <h2>NTP服务器设置</h2>
+            
+            <!-- 快速选择服务器 -->
+            <div class="server-buttons">
+                <h3>快速选择服务器</h3>
+                <div class="server-grid">
+                    <button class="server-btn" onclick="selectServer('time.cloud.tencent.com')">腾讯云</button>
+                    <button class="server-btn" onclick="selectServer('time.edu.cn')">教育网NTP</button>
+                    <button class="server-btn" onclick="selectServer('ntp1.aliyun.com')">阿里云</button>
+                    <button class="server-btn" onclick="selectServer('cn.ntp.org.cn')">中国NTP</button>
+                    <button class="server-btn" onclick="selectServer('time.cloudflare.com')">Cloudflare</button>
+                    <button class="server-btn" onclick="selectServer('time.asia.apple.com')">苹果亚洲</button>
+                    <button class="server-btn" onclick="selectServer('pool.ntp.org')">NTP Pool</button>
+                    <button class="server-btn" onclick="selectServer('time.windows.com')">微软时间</button>
+                    <button class="server-btn" onclick="selectServer('time.google.com')">谷歌时间</button>
+                    <button class="server-btn" onclick="selectServer('time.nist.gov')">美国NIST</button>
+                </div>
+            </div>
+            
+            <!-- 服务器地址输入 -->
+            <div class="input-group">
+                <label for="serverUrl">NTP服务器地址:</label>
+                <input type="text" id="serverUrl" value="time.cloud.tencent.com" placeholder="例如: time.cloud.tencent.com">
+            </div>
+            
+            <!-- 操作按钮 -->
+            <div class="action-buttons">
+                <button id="syncBtn" onclick="syncTime()">同步时间</button>
+                <button id="syncSystemBtn" onclick="syncSystemTime()" class="system-sync-btn">同步到系统时间</button>
+            </div>
+            
+            <div id="status" class="status"></div>
+        </div>
+        
+        <div class="time-display">
+            <div class="time-section">
+                <h3>NTP时间</h3>
+                <div id="ntpTime" class="time-value">--:--:--.---</div>
+                <div id="offsetInfo" class="offset-info"></div>
+            </div>
+            
+            <div class="time-section">
+                <h3>本地时间</h3>
+                <div id="localTime" class="time-value">--:--:--.---</div>
+            </div>
+        </div>
+        
+        <div id="syncInfo" class="sync-info"></div>
+    </div>
+    
+    <script src="static/script.js"></script>
+</body>
+
+</html>

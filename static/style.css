@@ -1,0 +1,323 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    padding: 20px;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 20px;
+    padding: 30px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(10px);
+}
+
+h1 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 30px;
+    font-size: 2.5em;
+    font-weight: 300;
+}
+
+.server-config {
+    background: #f8f9fa;
+    padding: 20px;
+    border-radius: 15px;
+    margin-bottom: 30px;
+    border: 1px solid #e9ecef;
+}
+
+.server-config h2 {
+    color: #495057;
+    margin-bottom: 15px;
+    font-size: 1.3em;
+    font-weight: 500;
+}
+
+.input-group {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.input-group label {
+    color: #666;
+    font-weight: 500;
+    min-width: 120px;
+}
+
+.input-group input {
+    flex: 1;
+    padding: 12px 15px;
+    border: 2px solid #e9ecef;
+    border-radius: 8px;
+    font-size: 14px;
+    min-width: 250px;
+    transition: border-color 0.3s ease;
+}
+
+.input-group input:focus {
+    outline: none;
+    border-color: #667eea;
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+
+button {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    min-width: 100px;
+}
+
+button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(102, 126, 234, 0.3);
+}
+
+button:active {
+    transform: translateY(0);
+}
+
+button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+}
+
+/* 服务器快速选择区域 */
+.server-buttons {
+    margin-bottom: 20px;
+    padding: 15px;
+    background: #fff;
+    border-radius: 12px;
+    border: 1px solid #e9ecef;
+}
+
+.server-buttons h3 {
+    color: #495057;
+    margin-bottom: 12px;
+    font-size: 1.1em;
+    font-weight: 500;
+}
+
+.server-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 8px;
+}
+
+.server-btn {
+    background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+    padding: 8px 12px;
+    font-size: 13px;
+    min-width: auto;
+    border-radius: 6px;
+}
+
+.server-btn:hover {
+    background: linear-gradient(135deg, #218838 0%, #1ea589 100%);
+    box-shadow: 0 4px 12px rgba(40, 167, 69, 0.3);
+}
+
+.server-btn.active {
+    background: linear-gradient(135deg, #fd7e14 0%, #e83e8c 100%);
+    box-shadow: 0 4px 12px rgba(253, 126, 20, 0.3);
+}
+
+/* 操作按钮区域 */
+.action-buttons {
+    display: flex;
+    gap: 12px;
+    margin-top: 15px;
+    flex-wrap: wrap;
+}
+
+.system-sync-btn {
+    background: linear-gradient(135deg, #fd7e14 0%, #e83e8c 100%);
+    position: relative;
+}
+
+.system-sync-btn:hover {
+    background: linear-gradient(135deg, #e8640f 0%, #d63384 100%);
+    box-shadow: 0 8px 20px rgba(253, 126, 20, 0.3);
+}
+
+.system-sync-btn::before {
+    content: "⚠️";
+    margin-right: 5px;
+}
+
+/* 警告提示 */
+.warning-text {
+    font-size: 12px;
+    color: #dc3545;
+    margin-top: 8px;
+    padding: 8px 12px;
+    background: #f8d7da;
+    border: 1px solid #f5c6cb;
+    border-radius: 6px;
+    display: none;
+}
+
+.warning-text.show {
+    display: block;
+}
+
+.status {
+    margin-top: 15px;
+    padding: 10px 15px;
+    border-radius: 8px;
+    font-weight: 500;
+    text-align: center;
+    min-height: 20px;
+}
+
+.status.success {
+    background: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+}
+
+.status.error {
+    background: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+}
+
+.status.syncing {
+    background: #d1ecf1;
+    color: #0c5460;
+    border: 1px solid #bee5eb;
+}
+
+.time-display {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+    margin-bottom: 30px;
+}
+
+.time-section {
+    text-align: center;
+    background: white;
+    padding: 25px;
+    border-radius: 15px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+    border: 1px solid #f0f0f0;
+}
+
+.time-section h3 {
+    color: #666;
+    margin-bottom: 15px;
+    font-size: 1.1em;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.time-value {
+    font-family: 'Courier New', monospace;
+    font-size: 2.5em;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 10px;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.offset-info {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 10px;
+}
+
+.offset-value {
+    font-family: 'Courier New', monospace;
+    font-weight: 600;
+    font-size: 1em;
+}
+
+.offset-positive {
+    color: #28a745;
+}
+
+.offset-negative {
+    color: #dc3545;
+}
+
+.delay-info {
+    color: #6c757d;
+    font-size: 0.9em;
+    font-family: 'Courier New', monospace;
+}
+
+.sync-info {
+    background: white;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+    border: 1px solid #f0f0f0;
+    text-align: center;
+}
+
+.loading {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    border: 2px solid #f3f3f3;
+    border-top: 2px solid #667eea;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin-right: 8px;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+@media (max-width: 768px) {
+    .container {
+        margin: 10px;
+        padding: 20px;
+    }
+    
+    .time-display {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    .input-group {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    .input-group label {
+        min-width: auto;
+    }
+    
+    .time-value {
+        font-size: 2em;
+    }
+    
+    h1 {
+        font-size: 2em;
+    }
+}
